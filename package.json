@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/KarlJohnsonIntrepid/spa-to-static-convertor/issues"
   },
-  "homepage": "https://github.com/KarlJohnsonIntrepid/spa-to-static-convertor#readme"
+  "homepage": "https://github.com/KarlJohnsonIntrepid/spa-to-static-convertor#readme",
+  "dependencies": {
+    "supercrawler": "^1.7.1"
+  }
 }
