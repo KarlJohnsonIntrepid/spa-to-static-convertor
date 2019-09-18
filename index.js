@@ -1,4 +1,4 @@
-const Crawler = require("./code/crawler.js");
+const PageDownloader = require("./code/pageDownloader.js");
 
-let crawler = new Crawler("http://intrepidnomads.com", "intrepidnomads.com");
-crawler.downloadSite();
+let download = new PageDownloader();
+download.downloadPage();

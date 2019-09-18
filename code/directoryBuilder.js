@@ -2,28 +2,49 @@ const fs = require("fs");
 
 class DirectoryBuilder {
   create(url) {
-    //split the url to get the file name and directory
-
     try {
-      url = new URL(DecodeURI(url));
-      let pathname = url.pathname.substring(1, url.pathname.length - 1);
+     
+      let page = this.pageName(url);
+      let dir = this.filePath(url)
 
-      let paths = pathname.split("/");
-      let page = paths[paths.length - 1];
-      console.log(`Page name = ${page}`);
+      let files =  dir.split("/");
 
-      //last part of the path is the f
-      var dir = "out";
+      console.log(files);
 
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir);
+      let currDir = files[0]
+      for (let index = 1; index < files.length; index++) {
+        if (!fs.existsSync(currDir)) {
+          fs.mkdirSync(currDir);
+          console.log(`Directory Created for ${page} : Directory = ${currDir}`);
+        }
+
+        currDir +=  "/" + files[index];
       }
-
-      console.log("Directory Created");
     } catch (ex) {
       console.log(ex);
       process.exit(1);
     }
+  }
+
+  pageName(url) {
+    url = new URL(decodeURI(url));
+    let paths = url.pathname.split("/");
+    paths.shift();
+    let page = paths[paths.length - 1];
+    
+    if(paths.length === 1){
+      page = "index";
+    }
+
+    return `${page}.html`;
+  }
+
+  filePath(url) {
+    url = new URL(decodeURI(url));
+    let paths = url.pathname.split("/");
+    paths.shift();
+    paths.pop();
+    return `out/${paths.join('/')}`;
   }
 }
 

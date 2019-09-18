@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/KarlJohnsonIntrepid/spa-to-static-convertor#readme",
   "dependencies": {
-    "supercrawler": "^1.7.1"
+    "cheerio": "^1.0.0-rc.3",
+    "puppeteer": "^1.20.0"
   }
 }
