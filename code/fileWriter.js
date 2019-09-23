@@ -6,20 +6,20 @@ class FileWriter {
     this.directoryBuilder = new DirectoryBuilder();
   }
 
-  writeFile(context) {
-    var sizeKb = Buffer.byteLength(context.body) / 1024;
-    const data = new Uint8Array(Buffer.from(context.body));
+  writeFile(url, content) {
+    var sizeKb = Buffer.byteLength(content) / 1024;
+    const data = new Uint8Array(Buffer.from(content));
 
     //Ensure folder is in the file system for the URL
-    this.directoryBuilder.create(context.url);
+    this.directoryBuilder.create(url);
 
-    let fileName = `${this.directoryBuilder.filePath(context.url)}${this.directoryBuilder.pageName(context.url)}`;
+    let fileName = `${this.directoryBuilder.filePath(url)}${this.directoryBuilder.pageName(url)}`;
 
     fs.writeFile(fileName, data, err => {
       if (err) {
-        console.log(`The file for ${context.url} has failed to download`);
+        console.log(`The file for ${url} has failed to download`);
       } else {
-        console.log(`${context.url} has been downloaded and created Size ${sizeKb}KB`);
+        console.log(`${url} has been downloaded and created Size ${sizeKb}KB`);
       }
     });
   }

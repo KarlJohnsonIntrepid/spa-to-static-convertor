@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+//NOte - URL requuired to end in /
 class DirectoryBuilder {
   create(url) {
     try {

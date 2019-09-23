@@ -1,12 +1,25 @@
-const FileWriter = require("./fileWriter.js");
+const puppeteer = require('puppeteer');
+const FileWriter = require('./fileWriter');
 
 class PageDownloader {
 
-  downloadPage() {
+  constructor () {
+    this.fileWriter = new FileWriter();
+  }
+
+  async downloadPage(url) {
+
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url, {waitUntil: 'load'});
     
-    console.log("downloading page");
-    //let writer = new FileWriter();
-   // writer.writeFile(context); 
+    //This gets the HTML
+    const content = await page.content();
+
+    this.fileWriter.writeFile(url, content);
+    await browser.close();
+   
+    console.log(`${url} downloaded`);
   }
 }
 
