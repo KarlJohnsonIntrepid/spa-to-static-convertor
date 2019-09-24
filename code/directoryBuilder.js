@@ -4,22 +4,21 @@ const fs = require("fs");
 class DirectoryBuilder {
   create(url) {
     try {
-     
       let page = this.pageName(url);
-      let dir = this.filePath(url)
+      let dir = this.filePath(url);
 
-      let files =  dir.split("/");
+      let files = dir.split("/");
 
       console.log(files);
 
-      let currDir = files[0]
+      let currDir = files[0];
       for (let index = 1; index < files.length; index++) {
         if (!fs.existsSync(currDir)) {
           fs.mkdirSync(currDir);
           console.log(`Directory Created for ${page} : Directory = ${currDir}`);
         }
 
-        currDir +=  "/" + files[index];
+        currDir += "/" + files[index];
       }
     } catch (ex) {
       console.log(ex);
@@ -32,8 +31,8 @@ class DirectoryBuilder {
     let paths = url.pathname.split("/");
     paths.shift();
     let page = paths[paths.length - 1];
-    
-    if(paths.length === 1){
+
+    if (paths.length === 1) {
       page = "index";
     }
 
@@ -45,7 +44,7 @@ class DirectoryBuilder {
     let paths = url.pathname.split("/");
     paths.shift();
     paths.pop();
-    return `out/${paths.join('/')}`;
+    return `out/${paths.join("/")}`;
   }
 }
 
