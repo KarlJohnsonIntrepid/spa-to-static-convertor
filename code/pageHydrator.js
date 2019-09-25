@@ -7,16 +7,6 @@ class PageHydrator {
 
   async hydratePage(path, host) {
     try {
-      //   if (!fs.existsSync("./out/content")) {
-      //     fs.mkdirSync("./out/content");
-      //     console.log(`Content directory created;`);
-      //   }
-
-      //   if (!fs.existsSync("./out/bundles")) {
-      //     fs.mkdirSync("./out/bundles");
-      //     console.log(`Content directory created;`);
-      //   }
-
       await this.downloadStyles(path, host);
       await this.downloadScripts(path, host);
     } catch (ex) {
@@ -41,17 +31,27 @@ class PageHydrator {
         let text = await response.text();
 
         //Create directory if not exists
-        let path = this.getPath(href);
+        let link = this.getPath(href);
         this.buildDirectoryStructure(path);
-        let fileName = path + ".css";
+        let fileName = link + ".css";
 
-        fs.writeFile(fileName, text, err => {
+        await fs.writeFile(fileName, text, err => {
           if (err) {
             console.log(`The file for ${fileName} has failed to download`);
           } else {
             console.log(`${fileName} has been downloaded and created`);
           }
         });
+
+        // element.attribs.href == path;
+        // await fs.writeFile(path, $.html(), err => {
+        //   if (err) {
+        //     console.log(`The file for Karl has failed to download`);
+        //   } else {
+        //     console.log(path);
+        //     console.log(`Karl has been downloaded and created`);
+        //   }
+        // });
       });
     });
   }

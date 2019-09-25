@@ -1,15 +1,7 @@
-Build custom crawler to index the site.
-crawler from multiple start points.
+Get list of all pages manually or crawler.....
 
-Page hyrator
-Remove space and returns....
-Fecator the code.....
-Copy the content folder manualy...
-Fav Icon?..
-Fancy Box in the css- just copy content folder manually?
-Do for javascript...
-
-- find jaavascript downlaods and embeds in the page.
+Page hydrator
+Run in webserver??
 
 IMages store in fire store?
 
